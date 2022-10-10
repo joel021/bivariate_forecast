@@ -35,7 +35,6 @@ def fit_model(model, X, y, validation_data, uri_model, verbose=2, batch_size=8, 
                 )
 
 def regression_model(n_i):
-    #curve adjustment model to this mileage
     
     inputs = tf.keras.Input(shape=(n_i,)) #input = [x,y,c0,c1,..,cn]
 
