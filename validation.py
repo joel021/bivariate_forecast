@@ -79,11 +79,11 @@ def fit_submodels(base_m_uri, params, fit_norm_df, val_norm_df, k_columns, shunk
 if __name__ == '__main__':
 
     ##---------------------Execute------------------------------------------------
-    model_path = "fit_wtfilters_SA_NA_c15/"
+    model_path = "sub1/"
     sub_path = "val_sub_models_15"
     
-    clm_df = pd.read_csv("./data/sel_clm_SA_NA.tsv", sep="\t")
-    prod_df = pd.read_csv("./data/sel_prod_SA_NA.tsv", sep="\t")
+    clm_df = pd.read_csv("./data/claims.tsv", sep="\t")
+    prod_df = pd.read_csv("./data/production.tsv", sep="\t")
     
     #Open the cluster model, base model and the params
     database = load_db("./models/"+model_path+"/database.json")
@@ -95,24 +95,7 @@ if __name__ == '__main__':
     params['y_c'] = 15
 
     export_params("./models/"+model_path+"/"+sub_path+"/model_params.json",params)
-    """
-    clm_df = clm_df[clm_df["mdl_yr"] >= 2018]
-    prod_df = prod_df[prod_df["mdl_yr"] >= 2018]
-    
-    print("Build data")
-    fit_val_data = build_data(  clm_list = clm_df, 
-                                prod_list = prod_df, 
-                                cols_group = ["veh_line_cd","mdl_yr","prt_num_causl_base_cd"], 
-                                params=params)
 
-    print("Select Distribution Window")
-    current_data = sel_dist_window(df = fit_val_data, #TODO: add insert noise function
-                                f_col = "filter_",
-                                z_max = [0.4,50], #z_max: base and top
-                                params = params
-                                )
-    current_data.to_csv("./data/fit_val_data_submodels.csv",index=False)
-    """
     current_data = pd.read_csv("./data/fit_val_data_submodels.csv")
     
     #current_data = cut_flattening_filters(df=current_data, params=params, filter_c='filter_', dz_per=0.25)

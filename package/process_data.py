@@ -57,7 +57,7 @@ def shuffle(X, y):
 def shuffle_to_cluster(X):
     
     indexes = np.arange(len(X))
-    np.random.shuffle(indexes) #randomiza os indices
+    np.random.shuffle(indexes)
     np.random.shuffle(indexes)
     np.random.shuffle(indexes)
     
